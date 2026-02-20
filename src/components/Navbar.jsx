@@ -1,6 +1,8 @@
+
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+
 
 export default function Navbar() {
   const { user, logout } = useContext(AuthContext);
@@ -8,24 +10,24 @@ export default function Navbar() {
 
   const handleLogout = () => {
     logout();
-    navigate("/");
+    navigate("/login");
   };
 
   return (
-    <div style={{
-      display: "flex",
-      justifyContent: "space-between",
-      padding: "15px",
-      background: "#1e293b",
-      color: "white"
-    }}>
-      <h3>Navkalpana Portal</h3>
+    <div className="navbar">
+      <div className="navbar-left">
+        🎓 Academic Operation & Management Portal
+      </div>
 
-      <div>
-        <span style={{ marginRight: "20px" }}>
-          {user?.name} ({user?.role})
-        </span>
-        <button onClick={handleLogout}>Logout</button>
+      <div className="navbar-right">
+        <div className="user-info">
+          {user?.name}
+          <span className="role-badge">{user?.role}</span>
+        </div>
+
+        <button className="logout-btn" onClick={handleLogout}>
+          Logout
+        </button>
       </div>
     </div>
   );

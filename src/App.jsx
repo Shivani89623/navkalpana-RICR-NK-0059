@@ -1,37 +1,41 @@
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
 import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
-import PrivateRoute from "./components/PrivateRoute";
 import Register from "./pages/Register";
-import BatchList from "./pages/Batchlist";
+import Dashboard from "./pages/Dashboard";
+import Students from "./pages/Students";
+import Batches from "./pages/Batches";
+import MainLayout from "./layout/MainLayout";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Register />} />
+    <AuthProvider>
+      <Router>
+        <Routes>
 
-        <Route
-          path="/dashboard"
-          element={
-            <PrivateRoute>
-              <Dashboard />
-            </PrivateRoute>
-          }
-        />
+          {/* Public Routes */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
 
-        <Route
-          path="/batches"
-          element={
-            <PrivateRoute>
-              <BatchList/>
-            </PrivateRoute>
-          }
-        />
-      </Routes>
-    </BrowserRouter>
+          {/* Protected Routes */}
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <MainLayout />
+              </ProtectedRoute>
+            }
+          >
+            <Route index element={<Dashboard />} />
+            <Route path="students" element={<Students />} />
+            <Route path="batches" element={<Batches />} />
+          </Route>
+
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
 
