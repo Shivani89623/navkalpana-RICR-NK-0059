@@ -86,8 +86,8 @@ public class SecurityConfig {
                         "api/batches/**",
                         "api/dashboard/**",
                         "api/students",
-                        "/auth/categories/**",
-                        "/auth/**",
+                        "api/attendance/**",
+                        "api/modules",
                         "/webhook/razorpay"
                 ).permitAll()
                

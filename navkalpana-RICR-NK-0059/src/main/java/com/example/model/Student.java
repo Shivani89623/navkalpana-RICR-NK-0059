@@ -6,7 +6,9 @@ import lombok.*;
 
 @Entity
 @Data
+@Getter
 @NoArgsConstructor
+@Setter
 @AllArgsConstructor
 public class Student {
 

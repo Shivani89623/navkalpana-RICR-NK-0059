@@ -24,4 +24,9 @@ public class StudentService {
     public void deleteStudent(Long id) {
         repository.deleteById(id);
     }
+
+	
+    public List<Student> getStudentsByBatch(Long batchId) {
+        return repository.findAllByBatchId(batchId);
+    }
 }

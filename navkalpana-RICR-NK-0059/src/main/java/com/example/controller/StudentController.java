@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import com.example.service.StudentService;
 import com.example.model.*;
+import com.example.repository.StudentRepository;
 
 import java.util.List;
 
@@ -27,5 +28,10 @@ public class StudentController {
     @DeleteMapping("/{id}")
     public void deleteStudent(@PathVariable Long id) {
         service.deleteStudent(id);
+    }
+   
+    @GetMapping("/batch/{batchId}")
+    public List<Student> getStudentsByBatch(@PathVariable Long batchId) {
+        return service.getStudentsByBatch(batchId);
     }
 }

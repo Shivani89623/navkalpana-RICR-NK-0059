@@ -35,6 +35,7 @@ public class BatchController {
     public ResponseEntity<List<Batch>> getAll() {
         return ResponseEntity.ok(batchService.getAllBatches());
     }
+    
 
     @GetMapping("/status/{status}")
     public ResponseEntity<List<Batch>> getByStatus(@PathVariable BatchStatus status) {
@@ -52,4 +53,5 @@ public class BatchController {
         batchService.deleteBatch(id);
         return ResponseEntity.ok("Deleted Successfully");
     }
+   
 }
